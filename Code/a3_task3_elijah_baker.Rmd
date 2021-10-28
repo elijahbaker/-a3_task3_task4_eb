@@ -1,0 +1,62 @@
+---
+title: "a3_task3_elijah_baker.Rmd"
+author: "E Baker"
+date: "10/28/2021"
+output: html_document
+---
+## Info
+
+### Data citation
+
+warnings and messages masked; everything else - code, outputs, text - should show up in your knitted document
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Load packages
+```{r}
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+
+## Read data
+```{r}
+urchins <- read.csv(here("data", "urchins.csv"))
+
+```
+
+## Data visualization: Size comparsions between purple and red urchins
+Section 1: Size comparisons, purple and red urchins (include data from all sites, and for both treatments - i.e. ignore those variables here)
+
+Data visualization: compare the distribution of sizes between purple and red urchins with a finalized, faceted histogram. You will probably want to reduce the number of bins (default is 30...we recommend closer to 10 here). Finalize your graphs and add a figure caption.
+
+```{r}
+urchins_clean <- urchins %>%
+  clean_names()
+
+ggplot(data=urchins_clean, aes(x=size, fill=common_name)) +
+  scale_fill_manual(values=c("#674ea7", "#900000")) + 
+          geom_histogram(bins=10) +
+  facet_wrap(~common_name) + 
+  theme() +
+  labs(x= "Number of sea urchins",
+       y= "Diameter of sea urchins (cm)",
+       title= "Comparisson of sea urchin diameter between red and purple urchins (BAKER)")
+
+       
+```
+
+
+
+
+
+## FOR A TABLE--
+  knitr:: kable(df) %>%
+    kable_styling(...) [can google which styling to use to create a better table]
+
+
+
